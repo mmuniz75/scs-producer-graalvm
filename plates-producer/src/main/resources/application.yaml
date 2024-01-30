@@ -1,0 +1,35 @@
+#
+# Stream
+#
+
+spring.cloud.function:
+    definition: platesToCheck
+
+spring.cloud.stream:
+    instanceCount: 1
+    default-binder: kafka
+    default:
+        producer.useNativeEncoding: true
+        consumer.useNativeEncoding: true
+    kafka:
+        binder:
+            auto-create-topics: true
+            brokers: localhost:9092
+
+            producer-properties:
+                schema.registry.url: mock://localhost:8081
+                key.serializer:  org.apache.kafka.common.serialization.StringSerializer
+                value.serializer: io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer
+                #specific.protobuf.value.type: lab.plates.producer.proto.Plate
+                enable.idempotence: false
+
+
+    bindings:
+        platesToCheck-out-0:
+            destination: plates
+            producer:
+                partitionCount: 1
+                poller:
+                    fixed-delay: 10000
+
+
