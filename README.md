@@ -1,9 +1,10 @@
 Prereqs:
 - Start a local kafka server on port 9092
-- Install GraalVM : 
-      - curl -s "https://get.sdkman.io" | bash
-      - sdk install java 22.3.r17-nik
-      - sdk use java 22.3.r17-nik
+  
+Install GraalVM : 
+- curl -s "https://get.sdkman.io" | bash
+- sdk install java 22.3.r17-nik
+- sdk use java 22.3.r17-nik
 
 Steps to reproduce the issue:
 
